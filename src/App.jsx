@@ -68,6 +68,7 @@ function LiquidButton({ children, className = "", ...props }) {
 function useUiSounds() {
   const audioContextRef = useRef(null);
   const ringIntervalRef = useRef(null);
+  const effectsVolume = 2;
 
   function getContext() {
     if (typeof window === "undefined") return null;
@@ -103,7 +104,7 @@ function useUiSounds() {
     oscillator.detune.setValueAtTime(detune, now);
 
     gainNode.gain.setValueAtTime(0.0001, now);
-    gainNode.gain.linearRampToValueAtTime(gain, now + attack);
+    gainNode.gain.linearRampToValueAtTime(gain * effectsVolume, now + attack);
     gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration + release);
 
     oscillator.connect(gainNode);
@@ -372,6 +373,7 @@ function useSpeech() {
     utterance.lang = "de-DE";
     utterance.rate = 0.95;
     utterance.pitch = 1.02;
+    utterance.volume = 0.72;
     window.speechSynthesis.speak(utterance);
   };
 
