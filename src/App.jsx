@@ -65,7 +65,127 @@ function LiquidButton({ children, className = "", ...props }) {
   );
 }
 
-function SelectionScreen({ onSelect }) {
+function useUiSounds() {
+  const audioContextRef = useRef(null);
+  const ringIntervalRef = useRef(null);
+
+  function getContext() {
+    if (typeof window === "undefined") return null;
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    if (!audioContextRef.current) {
+      audioContextRef.current = new Ctx();
+    }
+    if (audioContextRef.current.state === "suspended") {
+      audioContextRef.current.resume().catch(() => {});
+    }
+    return audioContextRef.current;
+  }
+
+  function pulseTone(ctx, options) {
+    const {
+      frequency = 880,
+      type = "sine",
+      gain = 0.03,
+      attack = 0.003,
+      release = 0.08,
+      duration = 0.09,
+      offset = 0,
+      detune = 0,
+    } = options;
+
+    const now = ctx.currentTime + offset;
+    const oscillator = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, now);
+    oscillator.detune.setValueAtTime(detune, now);
+
+    gainNode.gain.setValueAtTime(0.0001, now);
+    gainNode.gain.linearRampToValueAtTime(gain, now + attack);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration + release);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    oscillator.start(now);
+    oscillator.stop(now + duration + release + 0.01);
+  }
+
+  function playTap() {
+    const ctx = getContext();
+    if (!ctx) return;
+    pulseTone(ctx, { frequency: 1480, gain: 0.013, duration: 0.045, type: "triangle" });
+    pulseTone(ctx, { frequency: 1840, gain: 0.009, duration: 0.035, offset: 0.012, type: "triangle" });
+  }
+
+  function playCallStart() {
+    const ctx = getContext();
+    if (!ctx) return;
+    pulseTone(ctx, { frequency: 740, gain: 0.018, duration: 0.07, type: "sine" });
+    pulseTone(ctx, { frequency: 980, gain: 0.014, duration: 0.06, offset: 0.09, type: "triangle" });
+  }
+
+  function playConnect() {
+    const ctx = getContext();
+    if (!ctx) return;
+    pulseTone(ctx, { frequency: 660, gain: 0.018, duration: 0.055, type: "sine" });
+    pulseTone(ctx, { frequency: 880, gain: 0.015, duration: 0.055, offset: 0.075, type: "sine" });
+    pulseTone(ctx, { frequency: 1180, gain: 0.011, duration: 0.06, offset: 0.15, type: "triangle" });
+  }
+
+  function playHangup() {
+    const ctx = getContext();
+    if (!ctx) return;
+    pulseTone(ctx, { frequency: 720, gain: 0.017, duration: 0.06, type: "triangle" });
+    pulseTone(ctx, { frequency: 560, gain: 0.014, duration: 0.08, offset: 0.055, type: "triangle" });
+  }
+
+  function playRingPulse() {
+    const ctx = getContext();
+    if (!ctx) return;
+    pulseTone(ctx, { frequency: 930, gain: 0.013, duration: 0.07, type: "sine" });
+    pulseTone(ctx, { frequency: 740, gain: 0.011, duration: 0.07, offset: 0.2, type: "sine" });
+  }
+
+  function startRinging() {
+    stopRinging();
+    playRingPulse();
+    ringIntervalRef.current = window.setInterval(() => {
+      playRingPulse();
+    }, 1400);
+  }
+
+  function stopRinging() {
+    if (ringIntervalRef.current) {
+      window.clearInterval(ringIntervalRef.current);
+      ringIntervalRef.current = null;
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      stopRinging();
+      audioContextRef.current?.close().catch(() => {});
+      audioContextRef.current = null;
+    };
+  }, []);
+
+  return useMemo(
+    () => ({
+      tap: playTap,
+      callStart: playCallStart,
+      connect: playConnect,
+      hangup: playHangup,
+      startRinging,
+      stopRinging,
+      ensureReady: getContext,
+    }),
+    [],
+  );
+}
+
+function SelectionScreen({ onSelect, onTap }) {
   const [tab, setTab] = useState("call");
 
   return (
@@ -103,7 +223,7 @@ function SelectionScreen({ onSelect }) {
           </div>
         ) : (
           <div className="about-panel glass">
-            <h2>Resource Consciousness als Ausstellungserlebnis.</h2>
+            <h2>Über dieses Projekt</h2>
             <p>
               Unser Team entwickelt im Rahmen eines Product-Development-Projekts ein interaktives
               Ausstellungskonzept zum Thema Resource Consciousness. Im Fokus steht die Frage, wie
@@ -125,22 +245,28 @@ function SelectionScreen({ onSelect }) {
               Die spaetere Installation soll kompakt, zugaenglich und reflektierend sein, etwa fuer
               einen Foyer- oder Vorraumkontext.
             </p>
-            <div className="about-grid">
-              <span>Touch-optimiert</span>
-              <span>Webcam optional</span>
-              <span>Offline-Antworten</span>
-              <span>Ausstellungsscreen</span>
-            </div>
           </div>
         )}
       </section>
 
       <nav className="tab-bar glass" aria-label="Hauptnavigation">
-        <button className={tab === "call" ? "active" : ""} onClick={() => setTab("call")}>
+        <button
+          className={tab === "call" ? "active" : ""}
+          onClick={() => {
+            onTap();
+            setTab("call");
+          }}
+        >
           <PhoneIcon />
           <span>Anruf</span>
         </button>
-        <button className={tab === "about" ? "active" : ""} onClick={() => setTab("about")}>
+        <button
+          className={tab === "about" ? "active" : ""}
+          onClick={() => {
+            onTap();
+            setTab("about");
+          }}
+        >
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-.9-10.3h1.8v5.7h-1.8v-5.7Zm0-3.1h1.8v1.8h-1.8V7.6Z"
@@ -249,16 +375,26 @@ function useSpeech() {
     window.speechSynthesis.speak(utterance);
   };
 
-  return { enabled, setEnabled, supported, speak };
+  const stop = () => {
+    window.speechSynthesis?.cancel();
+  };
+
+  return { enabled, setEnabled, supported, speak, stop };
 }
 
-function FaceTimeScreen({ persona, onHangUp }) {
+function FaceTimeScreen({ persona, onHangUp, onTap, onHangupSound }) {
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeQ, setActiveQ] = useState(null);
   const [visibleQuestionIds, setVisibleQuestionIds] = useState([]);
   const [elapsed, setElapsed] = useState(0);
-  const { enabled: voiceEnabled, setEnabled: setVoiceEnabled, supported: voiceSupported, speak } = useSpeech();
+  const {
+    enabled: voiceEnabled,
+    setEnabled: setVoiceEnabled,
+    supported: voiceSupported,
+    speak,
+    stop: stopSpeech,
+  } = useSpeech();
   const visibleQuestions = useMemo(
     () => getVisibleQuestions(persona.id, visibleQuestionIds),
     [persona.id, visibleQuestionIds],
@@ -285,6 +421,7 @@ function FaceTimeScreen({ persona, onHangUp }) {
 
   async function handleQuestion(question) {
     if (loading) return;
+    onTap();
     setActiveQ(question.id);
     setLoading(true);
     setAnswer("");
@@ -304,7 +441,8 @@ function FaceTimeScreen({ persona, onHangUp }) {
   }
 
   function hangUp() {
-    window.speechSynthesis?.cancel();
+    onHangupSound();
+    stopSpeech();
     onHangUp();
   }
 
@@ -318,7 +456,7 @@ function FaceTimeScreen({ persona, onHangUp }) {
         </div>
         <div className="call-status">
           <span />
-          Live
+          Verbunden
         </div>
       </header>
 
@@ -364,7 +502,15 @@ function FaceTimeScreen({ persona, onHangUp }) {
           <button
             className={`voice-toggle ${voiceEnabled ? "active" : ""}`}
             disabled={!voiceSupported}
-            onClick={() => setVoiceEnabled((current) => !current)}
+            onClick={() => {
+              onTap();
+              setVoiceEnabled((current) => {
+                if (current) {
+                  stopSpeech();
+                }
+                return !current;
+              });
+            }}
             aria-label={voiceEnabled ? "Stimme ausschalten" : "Stimme einschalten"}
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -386,8 +532,26 @@ function FaceTimeScreen({ persona, onHangUp }) {
 export default function App() {
   const [screen, setScreen] = useState("selection");
   const [persona, setPersona] = useState(null);
+  const sounds = useUiSounds();
+  const previousScreenRef = useRef(screen);
+
+  useEffect(() => {
+    if (screen === "calling") {
+      sounds.startRinging();
+    } else {
+      sounds.stopRinging();
+    }
+
+    if (previousScreenRef.current === "calling" && screen === "facetime") {
+      sounds.connect();
+    }
+
+    previousScreenRef.current = screen;
+  }, [screen, sounds]);
 
   function handleSelect(selectedPersona) {
+    sounds.ensureReady();
+    sounds.callStart();
     setPersona(selectedPersona);
     setScreen("calling");
     window.setTimeout(() => setScreen("facetime"), 2200);
@@ -399,11 +563,13 @@ export default function App() {
       <div className="ambient ambient-two" />
       <div className="device-frame">
         <div className="device-speaker" />
-        {screen === "selection" ? <SelectionScreen onSelect={handleSelect} /> : null}
+        {screen === "selection" ? <SelectionScreen onSelect={handleSelect} onTap={sounds.tap} /> : null}
         {screen === "calling" && persona ? <CallingScreen persona={persona} /> : null}
         {screen === "facetime" && persona ? (
           <FaceTimeScreen
             persona={persona}
+            onTap={sounds.tap}
+            onHangupSound={sounds.hangup}
             onHangUp={() => {
               setScreen("selection");
               setPersona(null);

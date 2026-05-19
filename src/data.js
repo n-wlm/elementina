@@ -99,7 +99,7 @@ const DIALOG_FLOWS = {
         eyebrow: "Herkunft",
         label: "Woher kommst du?",
         answer:
-          "Rund 70 Prozent von mir kommen aus der Demokratischen Republik Kongo, besonders aus der Region Katanga. Australien und Russland fördern ebenfalls Kobalt, aber der Kongo dominiert. Diese Abhängigkeit ist kein Zufall, sondern Teil des Problems.",
+          "Rund 70 Prozent von mir kommen aus der Demokratischen Republik Kongo.",
         unlocks: ["q2"],
       },
       q2: {
@@ -107,7 +107,7 @@ const DIALOG_FLOWS = {
         eyebrow: "Abbau",
         label: "Wie wirst du abgebaut?",
         answer:
-          "Im industriellen Bergbau arbeiten Maschinen, aber ein erheblicher Teil kommt aus Kleinminen. Dort graben Menschen in engen, unbefestigten Schächten, oft ohne Helm, Belüftung oder Schutz. Der Staub schädigt die Lungen, und manchmal arbeiten dort auch Kinder.",
+          "Aus Minen. Dort graben Menschen in engen, unbefestigten Schächten, oft ohne Helm, Belüftung oder Schutz. Der Staub schädigt die Lungen, und häufig arbeiten dort auch Kinder.",
         unlocks: ["q5"],
       },
       q3: {
@@ -115,7 +115,7 @@ const DIALOG_FLOWS = {
         eyebrow: "Smartphone",
         label: "Wie steckst du im Handy?",
         answer:
-          "Ich bin im Akku deines Smartphones wichtig, besonders in Lithium-Kobalt-Oxid-Kathoden. Ohne mich kann ein Akku Energie oft nicht so stabil und dicht speichern. Ein Smartphone enthält mehrere Gramm von mir, und bei Milliarden Geräten ist das eine gewaltige Nachfrage.",
+          "Ich bin im Akku deines Smartphones wichtig. Ohne mich kann ein Akku Energie oft nicht so stabil und dicht speichern. Ein Smartphone enthält mehrere Gramm von mir, und bei Milliarden Geräten ist das eine gewaltige Nachfrage.",
         unlocks: ["q4", "q6"],
       },
       q4: {
@@ -123,7 +123,7 @@ const DIALOG_FLOWS = {
         eyebrow: "Umwelt",
         label: "Ökologische Folgen?",
         answer:
-          "Der Bergbau kann ganze Landstriche belasten. Säuren und Schwermetalle gelangen in Böden und Wasser, Felder werden unfruchtbar und Flüsse gefährlich. Das ist keine abstrakte Nebenwirkung, sondern eine direkte Spur unseres Konsums.",
+          "Der Bergbau kann ganze Landstriche belasten. Säuren und Schwermetalle gelangen in Böden und Wasser, Felder werden unfruchtbar und Flüsse gefährlich.",
         unlocks: [],
       },
       q5: {
@@ -131,7 +131,7 @@ const DIALOG_FLOWS = {
         eyebrow: "Menschen",
         label: "Folgen für Menschen?",
         answer:
-          "Viele Menschen im Kleinbergbau verdienen kaum genug zum Leben und riskieren dabei Einstürze, Staubkrankheiten und Vergiftungen. Berichte sprechen seit Jahren von Kinderarbeit in Kobaltminen. Ich gebe euren Akkus Kraft, aber ich kenne den Preis.",
+          "Viele Menschen im Kleinbergbau verdienen kaum genug zum Leben und riskieren dabei Einstürze, Staubkrankheiten und Vergiftungen. Berichte sprechen seit Jahren von Kinderarbeit in Kobaltminen.",
         unlocks: [],
       },
       q6: {

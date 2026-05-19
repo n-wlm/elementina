@@ -288,26 +288,6 @@ button {
   margin-top: 12px;
 }
 
-.about-grid {
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.about-grid span {
-  min-height: 56px;
-  display: grid;
-  place-items: center;
-  border-radius: 18px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 13px;
-  font-weight: 730;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 .tab-bar {
   position: absolute;
   left: 20px;
