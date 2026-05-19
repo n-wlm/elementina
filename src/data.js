@@ -1,0 +1,184 @@
+export const PERSONAS = [
+  {
+    id: "goldina",
+    name: "Goldina",
+    element: "Au · 79",
+    role: "Kontakt, SIM, Mikroprozessor",
+    tagline: "Das wertvollste Metall der Welt",
+    portrait: "Au",
+    color: "#f0c020",
+    colorLight: "#ffe878",
+    glow: "rgba(240, 192, 32, 0.58)",
+    ink: "#3a2000",
+    bg: "#0d0a00",
+    mood: "glamourös, selbstbewusst, nachdenklich",
+  },
+  {
+    id: "kobaltin",
+    name: "Kobaltin",
+    element: "Co · 27",
+    role: "Lithium-Ionen-Akku",
+    tagline: "Die Kraft hinter jedem Akku",
+    portrait: "Co",
+    color: "#2878f0",
+    colorLight: "#77b6ff",
+    glow: "rgba(40, 120, 240, 0.58)",
+    ink: "#07124f",
+    bg: "#020510",
+    mood: "stark, direkt, kämpferisch",
+  },
+];
+
+// Fragebaum pro Persona:
+// - introStatement: erster Text beim Start des Calls
+// - initialQuestionIds: Fragen, die direkt sichtbar sind
+// - questions[id].unlocks: neue Fragen, die nach Antwort auf diese Frage erscheinen
+const DIALOG_FLOWS = {
+  goldina: {
+    introStatement:
+      "Ich bin Goldina. In jedem Smartphone glänze ich unsichtbar in Kontakten und Schaltkreisen. Frag mich alles, ich antworte direkt.",
+    initialQuestionIds: ["q1", "q3"],
+    questions: {
+      q1: {
+        id: "q1",
+        eyebrow: "Herkunft",
+        label: "Woher kommst du?",
+        answer:
+          "Ich komme aus Südafrika, Australien, China und Ghana. Überall auf der Welt gibt es mich, aber meist nur in winzigen Mengen, sodass für ein Gramm von mir Tonnen Gestein zermahlen werden. Das macht mich begehrt, teuer und ehrlich gesagt auch ein bisschen schuldig.",
+        unlocks: ["q2", "q4"],
+      },
+      q2: {
+        id: "q2",
+        eyebrow: "Abbau",
+        label: "Wie wirst du abgebaut?",
+        answer:
+          "Im Großbergbau sprengen riesige Maschinen ganze Berge auf. Im Kleinbergbau in Ghana und im Kongo graben Menschen mit bloßen Händen und lösen mich oft mit Quecksilber aus dem Gestein. Dieses Gift verseucht Flüsse und Lungen, während ich glänzend in einem Gerät lande.",
+        unlocks: ["q5"],
+      },
+      q3: {
+        id: "q3",
+        eyebrow: "Smartphone",
+        label: "Wie steckst du im Handy?",
+        answer:
+          "Ich stecke in Kontakten, die nicht rosten dürfen: in der SIM-Karte, an Akku-Kontakten und in Schaltkreisen des Mikroprozessors. In einem Handy sind es weniger als 30 Milligramm. Bei Milliarden Geräten wird daraus trotzdem eine enorme Menge Gold.",
+        unlocks: ["q6"],
+      },
+      q4: {
+        id: "q4",
+        eyebrow: "Umwelt",
+        label: "Ökologische Folgen?",
+        answer:
+          "Der Tagebau zerstört riesige Naturflächen. Quecksilber und Zyanid können Böden und Gewässer über Jahrzehnte vergiften, auch nachdem eine Mine längst geschlossen wurde. Mein Glanz hat also oft einen sehr dunklen Rand.",
+        unlocks: [],
+      },
+      q5: {
+        id: "q5",
+        eyebrow: "Menschen",
+        label: "Folgen für Menschen?",
+        answer:
+          "In Ghana, Simbabwe und im Kongo arbeiten Kinder und Erwachsene ohne ausreichende Schutzausrüstung in Minen. Quecksilber-Dämpfe können Gehirn und Nieren schädigen. Dass ich danach oft in einem Gerät stecke, das nach zwei Jahren ersetzt wird, lässt mich nicht kalt.",
+        unlocks: [],
+      },
+      q6: {
+        id: "q6",
+        eyebrow: "Danach",
+        label: "Was passiert nach dem Handy?",
+        answer:
+          "Ich bin vollständig recycelbar, und trotzdem landen goldhaltige Geräte tonnenweise im Müll oder in Schubladen. Eine Tonne Handys enthält viel mehr Gold als eine Tonne Erz aus der Mine. Recycling wäre für mich der eleganteste Auftritt.",
+        unlocks: [],
+      },
+    },
+  },
+  kobaltin: {
+    introStatement:
+      "Ich bin Kobaltin. Ohne mich speichert dein Akku kaum Energie. Stell deine Fragen, ich rede Klartext.",
+    initialQuestionIds: ["q3", "q1"],
+    questions: {
+      q1: {
+        id: "q1",
+        eyebrow: "Herkunft",
+        label: "Woher kommst du?",
+        answer:
+          "Rund 70 Prozent von mir kommen aus der Demokratischen Republik Kongo, besonders aus der Region Katanga. Australien und Russland fördern ebenfalls Kobalt, aber der Kongo dominiert. Diese Abhängigkeit ist kein Zufall, sondern Teil des Problems.",
+        unlocks: ["q2"],
+      },
+      q2: {
+        id: "q2",
+        eyebrow: "Abbau",
+        label: "Wie wirst du abgebaut?",
+        answer:
+          "Im industriellen Bergbau arbeiten Maschinen, aber ein erheblicher Teil kommt aus Kleinminen. Dort graben Menschen in engen, unbefestigten Schächten, oft ohne Helm, Belüftung oder Schutz. Der Staub schädigt die Lungen, und manchmal arbeiten dort auch Kinder.",
+        unlocks: ["q5"],
+      },
+      q3: {
+        id: "q3",
+        eyebrow: "Smartphone",
+        label: "Wie steckst du im Handy?",
+        answer:
+          "Ich bin im Akku deines Smartphones wichtig, besonders in Lithium-Kobalt-Oxid-Kathoden. Ohne mich kann ein Akku Energie oft nicht so stabil und dicht speichern. Ein Smartphone enthält mehrere Gramm von mir, und bei Milliarden Geräten ist das eine gewaltige Nachfrage.",
+        unlocks: ["q4", "q6"],
+      },
+      q4: {
+        id: "q4",
+        eyebrow: "Umwelt",
+        label: "Ökologische Folgen?",
+        answer:
+          "Der Bergbau kann ganze Landstriche belasten. Säuren und Schwermetalle gelangen in Böden und Wasser, Felder werden unfruchtbar und Flüsse gefährlich. Das ist keine abstrakte Nebenwirkung, sondern eine direkte Spur unseres Konsums.",
+        unlocks: [],
+      },
+      q5: {
+        id: "q5",
+        eyebrow: "Menschen",
+        label: "Folgen für Menschen?",
+        answer:
+          "Viele Menschen im Kleinbergbau verdienen kaum genug zum Leben und riskieren dabei Einstürze, Staubkrankheiten und Vergiftungen. Berichte sprechen seit Jahren von Kinderarbeit in Kobaltminen. Ich gebe euren Akkus Kraft, aber ich kenne den Preis.",
+        unlocks: [],
+      },
+      q6: {
+        id: "q6",
+        eyebrow: "Danach",
+        label: "Was passiert nach dem Handy?",
+        answer:
+          "Viele Akkus werden nicht recycelt, sondern liegen in Schubladen oder landen falsch entsorgt im Müll. Technisch lässt sich Kobalt zurückgewinnen, und das würde den Druck auf neue Minen verringern. Jeder zurückgebrachte Akku zählt.",
+        unlocks: [],
+      },
+    },
+  },
+};
+
+function getDialog(personaId) {
+  return DIALOG_FLOWS[personaId] ?? { introStatement: "", initialQuestionIds: [], questions: {} };
+}
+
+export function getPersonaIntro(personaId) {
+  return getDialog(personaId).introStatement;
+}
+
+export function getInitialQuestions(personaId) {
+  const dialog = getDialog(personaId);
+  return dialog.initialQuestionIds
+    .map((questionId) => dialog.questions[questionId])
+    .filter(Boolean);
+}
+
+export function getQuestionById(personaId, questionId) {
+  return getDialog(personaId).questions[questionId] ?? null;
+}
+
+export function getVisibleQuestions(personaId, visibleQuestionIds) {
+  const dialog = getDialog(personaId);
+  return visibleQuestionIds.map((questionId) => dialog.questions[questionId]).filter(Boolean);
+}
+
+export function getResponseForQuestion(personaId, questionId) {
+  const question = getQuestionById(personaId, questionId);
+
+  return new Promise((resolve) => {
+    window.setTimeout(() => {
+      resolve({
+        answer: question?.answer ?? "Dazu habe ich gerade keine Antwort.",
+        unlocks: question?.unlocks ?? [],
+      });
+    }, 720);
+  });
+}
