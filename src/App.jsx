@@ -68,7 +68,7 @@ function LiquidButton({ children, className = "", ...props }) {
 function useUiSounds() {
   const audioContextRef = useRef(null);
   const ringIntervalRef = useRef(null);
-  const effectsVolume = 2;
+  const effectsVolume = 3.25;
 
   function getContext() {
     if (typeof window === "undefined") return null;
@@ -373,7 +373,7 @@ function useSpeech() {
     utterance.lang = "de-DE";
     utterance.rate = 0.95;
     utterance.pitch = 1.02;
-    utterance.volume = 0.72;
+    utterance.volume = 1;
     window.speechSynthesis.speak(utterance);
   };
 
