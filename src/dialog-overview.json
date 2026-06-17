@@ -10,42 +10,42 @@
           "id": "q1",
           "eyebrow": "Herkunft",
           "label": "Woher kommst du?",
-          "answer": "Ich komme aus Südafrika, Australien, China und Ghana. Überall auf der Welt gibt es mich, aber meist nur in winzigen Mengen, sodass für ein Gramm von mir Tonnen Gestein zermahlen werden. Das macht mich begehrt, teuer und ehrlich gesagt auch ein bisschen schuldig.",
+          "answer": "Ich komme aus Südafrika, Australien, China, Russland und Ghana, im Grunde von jedem Kontinent. Überall auf der Welt gibt es mich, aber fast immer nur in winzigen Mengen: Für ein einziges Gramm von mir werden oft mehrere Tonnen Gestein zermahlen. Das macht mich selten, begehrt und teuer. Und ehrlich gesagt liegt in dieser Seltenheit auch ein bisschen Schuld, denn der Aufwand, mich zu finden, hinterlässt überall seine Spuren.",
           "unlocks": ["q2", "q4"]
         },
         "q2": {
           "id": "q2",
           "eyebrow": "Abbau",
           "label": "Wie wirst du abgebaut?",
-          "answer": "Im Großbergbau sprengen riesige Maschinen ganze Berge auf. Im Kleinbergbau in Ghana und im Kongo graben Menschen mit bloßen Händen und lösen mich oft mit Quecksilber aus dem Gestein. Dieses Gift verseucht Flüsse und Lungen, während ich glänzend in einem Gerät lande.",
+          "answer": "Im Großbergbau sprengen riesige Maschinen ganze Berge auf und graben sich Hunderte Meter in die Tiefe. Im Kleinbergbau in Ghana, Peru oder im Kongo graben Menschen dagegen mit bloßen Händen und lösen mich oft mit Quecksilber aus dem Gestein. Dieses Gift verdampft, verseucht Flüsse und Lungen und bleibt im Wasserkreislauf. Während ich am Ende glänzend in einem Gerät lande, bleibt an dem Ort, an dem man mich fand, der giftige Rest zurück.",
           "unlocks": ["q5"]
         },
         "q3": {
           "id": "q3",
           "eyebrow": "Smartphone",
           "label": "Wie steckst du im Handy?",
-          "answer": "Ich stecke in Kontakten, die nicht rosten dürfen: in der SIM-Karte, an Akku-Kontakten und in Schaltkreisen des Mikroprozessors. In einem Handy sind es weniger als 30 Milligramm. Bei Milliarden Geräten wird daraus trotzdem eine enorme Menge Gold.",
+          "answer": "Ich stecke überall dort, wo ein Kontakt zuverlässig leiten und niemals rosten darf: in der SIM-Karte, an den Akku-Kontakten, in den hauchdünnen Leiterbahnen des Mikroprozessors. In einem einzigen Handy sind es weniger als 30 Milligramm, kaum sichtbar. Aber multipliziere das mit Milliarden von Geräten weltweit, und aus meinem unsichtbaren Glanz wird eine enorme Menge Gold, die jedes Jahr neu nachgefragt wird.",
           "unlocks": ["q6"]
         },
         "q4": {
           "id": "q4",
           "eyebrow": "Umwelt",
           "label": "Ökologische Folgen?",
-          "answer": "Der Tagebau zerstört riesige Naturflächen. Quecksilber und Zyanid können Böden und Gewässer über Jahrzehnte vergiften, auch nachdem eine Mine längst geschlossen wurde. Mein Glanz hat also oft einen sehr dunklen Rand.",
+          "answer": "Der Tagebau frisst riesige Naturflächen auf: Wälder werden gerodet, ganze Hügel abgetragen. Quecksilber und Zyanid, mit denen man mich aus dem Gestein löst, können Böden und Gewässer über Jahrzehnte vergiften, auch lange nachdem eine Mine längst geschlossen wurde. Hinzu kommt der enorme Wasser- und Energieverbrauch. Mein Glanz hat also fast immer einen sehr dunklen Rand, den man dem fertigen Gerät nicht mehr ansieht.",
           "unlocks": []
         },
         "q5": {
           "id": "q5",
           "eyebrow": "Menschen",
           "label": "Folgen für Menschen?",
-          "answer": "In Ghana, Simbabwe und im Kongo arbeiten Kinder und Erwachsene ohne ausreichende Schutzausrüstung in Minen. Quecksilber-Dämpfe können Gehirn und Nieren schädigen. Dass ich danach oft in einem Gerät stecke, das nach zwei Jahren ersetzt wird, lässt mich nicht kalt.",
+          "answer": "In Ghana, Simbabwe und im Kongo arbeiten Kinder und Erwachsene ohne ausreichende Schutzausrüstung in den Minen, oft für einen Hungerlohn. Die Quecksilber-Dämpfe, die beim Auswaschen entstehen, können Gehirn, Nerven und Nieren dauerhaft schädigen. Manche tragen diese Schäden ihr Leben lang. Dass ich danach oft in einem Gerät stecke, das schon nach zwei Jahren ersetzt wird, lässt mich ehrlich gesagt nicht kalt.",
           "unlocks": []
         },
         "q6": {
           "id": "q6",
           "eyebrow": "Danach",
           "label": "Was passiert nach dem Handy?",
-          "answer": "Ich bin vollständig recycelbar, und trotzdem landen goldhaltige Geräte tonnenweise im Müll oder in Schubladen. Eine Tonne Handys enthält viel mehr Gold als eine Tonne Erz aus der Mine. Recycling wäre für mich der eleganteste Auftritt.",
+          "answer": "Ich bin vollständig und beliebig oft recycelbar, ohne dass ich an Wert verliere. Und trotzdem landen goldhaltige Geräte tonnenweise im Müll oder verstauben in Schubladen. Dabei steckt in einer Tonne alter Handys oft deutlich mehr Gold als in einer Tonne Erz frisch aus der Mine, man nennt das urban mining. Mich aus alten Geräten zurückzuholen, statt neue Berge dafür aufzureißen, wäre für mich der mit Abstand eleganteste Auftritt.",
           "unlocks": []
         }
       }
@@ -58,42 +58,42 @@
           "id": "q1",
           "eyebrow": "Herkunft",
           "label": "Woher kommst du?",
-          "answer": "Rund 70 Prozent von mir kommen aus der Demokratischen Republik Kongo.",
+          "answer": "Rund 70 Prozent von mir kommen aus der Demokratischen Republik Kongo, vor allem aus der Bergbauprovinz Katanga im Süden des Landes. Der Rest verteilt sich auf Länder wie Russland, Australien, die Philippinen und Kanada. Aber das Herz meiner Förderung schlägt im Kongo, und genau dort liegen Reichtum und Ausbeutung oft nur wenige Meter auseinander. Wo so viel von mir im Boden steckt, ballen sich auch die Konflikte.",
           "unlocks": ["q2"]
         },
         "q2": {
           "id": "q2",
           "eyebrow": "Abbau",
           "label": "Wie wirst du abgebaut?",
-          "answer": "Aus Minen. Dort graben Menschen in engen, unbefestigten Schächten, oft ohne Helm, Belüftung oder Schutz. Der Staub schädigt die Lungen, und häufig arbeiten dort auch Kinder.",
+          "answer": "Ein Teil von mir kommt aus großen, industriellen Minen. Ein erheblicher Anteil aber stammt aus dem Kleinbergbau: Dort graben Menschen in engen, unbefestigten Schächten, oft ohne Helm, ohne Belüftung, ohne jede Schutzausrüstung. Der feine Staub legt sich auf die Lungen, Schächte stürzen ein, und immer wieder arbeiten auch Kinder mit. Ich werde mit bloßen Händen aus der Erde geholt, und der Preis dafür taucht auf keiner Rechnung auf.",
           "unlocks": ["q5"]
         },
         "q3": {
           "id": "q3",
           "eyebrow": "Smartphone",
           "label": "Wie steckst du im Handy?",
-          "answer": "Ich bin im Akku deines Smartphones wichtig. Ohne mich kann ein Akku Energie oft nicht so stabil und dicht speichern. Ein Smartphone enthält mehrere Gramm von mir, und bei Milliarden Geräten ist das eine gewaltige Nachfrage.",
+          "answer": "Ich stecke im Akku deines Smartphones, genauer in der Kathode der Lithium-Ionen-Zelle. Ohne mich speichert ein Akku Energie weniger stabil und weniger dicht, lädt schlechter und altert schneller. In einem einzigen Handy sind nur wenige Gramm von mir, das klingt nach wenig. Aber rechne das auf Milliarden Geräte hoch, dazu Laptops und vor allem Elektroautos, und du verstehst, warum die Nachfrage nach mir geradezu explodiert.",
           "unlocks": ["q4", "q6"]
         },
         "q4": {
           "id": "q4",
           "eyebrow": "Umwelt",
           "label": "Ökologische Folgen?",
-          "answer": "Der Bergbau kann ganze Landstriche belasten. Säuren und Schwermetalle gelangen in Böden und Wasser, Felder werden unfruchtbar und Flüsse gefährlich.",
+          "answer": "Der Bergbau kann ganze Landstriche vergiften. Beim Lösen aus dem Gestein gelangen Säuren und Schwermetalle in Böden und Flüsse, Felder werden unfruchtbar, Trinkwasser gefährlich. Wo ich abgebaut werde, bleiben oft aufgewühlte, kahle Flächen zurück. Und das Schlimme ist: Diese Schäden wirken noch lange nach, wenn die Mine längst erschöpft und verlassen ist.",
           "unlocks": []
         },
         "q5": {
           "id": "q5",
           "eyebrow": "Menschen",
           "label": "Folgen für Menschen?",
-          "answer": "Viele Menschen im Kleinbergbau verdienen kaum genug zum Leben und riskieren dabei Einstürze, Staubkrankheiten und Vergiftungen. Berichte sprechen seit Jahren von Kinderarbeit in Kobaltminen.",
+          "answer": "Viele Menschen im Kleinbergbau verdienen kaum genug zum Überleben und riskieren dafür Einstürze, Staublungen und Vergiftungen. Seit Jahren berichten Organisationen von Kinderarbeit in Kobaltminen: Kinder, die schleppen, sortieren und graben, statt zur Schule zu gehen. Ich bin buchstäblich die Kraft in deinem Akku, aber diese Kraft hat einen Namen und ein Gesicht. Nur bekommt man es selten zu sehen.",
           "unlocks": []
         },
         "q6": {
           "id": "q6",
           "eyebrow": "Danach",
           "label": "Was passiert nach dem Handy?",
-          "answer": "Viele Akkus werden nicht recycelt, sondern liegen in Schubladen oder landen falsch entsorgt im Müll. Technisch lässt sich Kobalt zurückgewinnen, und das würde den Druck auf neue Minen verringern. Jeder zurückgebrachte Akku zählt.",
+          "answer": "Viel zu viele Akkus werden nie recycelt. Sie liegen in Schubladen, oder sie landen falsch entsorgt im Restmüll und damit auf Deponien. Dabei lässt sich Kobalt technisch sehr gut zurückgewinnen, und jedes recycelte Gramm verringert den Druck, neue Minen aufzureißen. Bring deinen alten Akku zurück, dann muss weniger von mir unter Tage geholt werden.",
           "unlocks": []
         }
       }

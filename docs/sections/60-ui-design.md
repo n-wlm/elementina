@@ -5,7 +5,7 @@ order: 60
 status: current
 last_updated: 2026-06-17
 owner: @naim
-linked_paths: src/styles.css, src/App.jsx
+linked_paths: src/styles.css, src/App.jsx, src/data.js
 summary: Designsprache (Liquid Glass), Tokens, Screens und das responsive Verhalten.
 ---
 
@@ -55,8 +55,18 @@ in `src/data.js` (pro Element). Die wichtigsten:
   verschwindet der Phone-Rahmen, die App füllt den Screen; Safe-Areas via
   `env(safe-area-inset-*)`.
 - **Desktop/Tablet:** zentriertes Phone-Mockup (`min(92vw, 520px)`).
-- **FaceTime-Schrumpflogik:** Avatar-Stage `minmax(0,1fr)`; Antwort-Panel und
-  Fragebaum-Dock scrollen *eingegrenzt* als Sicherheitsnetz; Identity-Card unter
-  720px Höhe ausgeblendet.
+- **FaceTime-Schrumpflogik:** eigene Grid-Zeilen für Avatar-Stage
+  (`minmax(0,1fr)`, schrumpft zuerst), Identity-Card, Antwort-Panel und Dock.
+  Die Identity-Card liegt in **eigener Zeile** (nicht in der Avatar-Stage), damit
+  sie beim Schrumpfen nie geclippt wird oder überlappt. Antwort-Panel
+  (`max-height: 40dvh`, auf niedrigen Screens 32dvh) und Fragebaum-Dock scrollen
+  *eingegrenzt* als Sicherheitsnetz.
+- **Gestaffeltes Ausblenden bei wenig Platz** (verhindert Überlappungen):
+  Identity-Card unter `max-height: 720px`, die absolut positionierte
+  Self-View-PiP unter `max-height: 900px`. Die PiP würde sonst beim Schrumpfen
+  der Avatar-Zone mit Identity-Card/Header kollidieren; sie erscheint nur auf
+  großen Screens (Ausstellungsdisplay, Tablet, Desktop-Mockup).
 - **Querformat** (`orientation: landscape` und `max-height: 540px`): eigenes
-  Zwei-Spalten-Layout (Avatar links, Antwort + Fragen rechts).
+  Zwei-Spalten-Layout (Avatar links, Antwort + Fragen rechts), PiP ausgeblendet.
+- **Verifikation:** Überlappungs-/Clipping-frei geprüft per DOM-Bounding-Box-Check
+  über 320×568 bis 1920×1080 inkl. Querformat, jeweils mit allen 6 Fragen.

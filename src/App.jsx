@@ -466,11 +466,12 @@ function FaceTimeScreen({ persona, onHangUp, onTap, onHangupSound }) {
 
       <section className="avatar-stage" aria-live="polite">
         <ElementAvatar persona={persona} size="hero" talking={loading} />
-        <div className="identity-card glass">
-          <span>{persona.element}</span>
-          <strong>{persona.tagline}</strong>
-        </div>
       </section>
+
+      <div className="identity-card glass">
+        <span>{persona.element}</span>
+        <strong>{persona.tagline}</strong>
+      </div>
 
       <section className="answer-panel glass">
         {loading ? (
