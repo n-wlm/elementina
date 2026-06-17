@@ -1,0 +1,8 @@
+{
+  "project": "Element Hotline",
+  "accent": "#f0c020",
+  "theme": "auto",
+  "offline": true,
+  "output": "documentation.html",
+  "flavor": "code"
+}
