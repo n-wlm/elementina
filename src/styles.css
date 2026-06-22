@@ -2,8 +2,14 @@
   color: #f7f7fb;
   background: #030305;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "Segoe UI", sans-serif;
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
   font-synthesis: none;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -16,8 +22,14 @@
 html,
 body,
 #root {
+  width: 100%;
   min-height: 100%;
   margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: #030305;
 }
 
 button {
@@ -26,12 +38,16 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* =========================================================
+   ÄUSSERE APP
+   ========================================================= */
+
 .app-shell {
   min-height: 100vh;
   min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: clamp(18px, 4vh, 54px);
+  padding: clamp(14px, 3vh, 42px);
   overflow: hidden;
   position: relative;
   background:
@@ -63,14 +79,24 @@ button {
   background: #f4d053;
 }
 
+/* =========================================================
+   HANDY-RAHMEN
+   ========================================================= */
+
 .device-frame {
   width: min(92vw, 520px);
   height: min(94dvh, 980px);
   position: relative;
+  overflow: hidden;
   border-radius: clamp(36px, 5vw, 58px);
   padding: 13px;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.03) 28%, rgba(0, 0, 0, 0.58) 74%),
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.03) 28%,
+      rgba(0, 0, 0, 0.58) 74%
+    ),
     #07080b;
   box-shadow:
     0 46px 120px rgba(0, 0, 0, 0.62),
@@ -85,7 +111,7 @@ button {
   position: absolute;
   top: 18px;
   left: 50%;
-  z-index: 20;
+  z-index: 40;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.24);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
@@ -94,6 +120,7 @@ button {
 .phone-screen {
   width: 100%;
   height: 100%;
+  min-height: 0;
   overflow: hidden;
   position: relative;
   border-radius: clamp(28px, 4vw, 46px);
@@ -124,28 +151,41 @@ button {
   -webkit-backdrop-filter: blur(24px) saturate(145%);
 }
 
+/* =========================================================
+   ELEMENT-AUSWAHL – WICHTIGER RESPONSIVE BEREICH
+   ========================================================= */
+
 .selection-screen {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
   background:
     radial-gradient(circle at 24% 12%, rgba(80, 120, 255, 0.26), transparent 26%),
     radial-gradient(circle at 82% 74%, rgba(240, 192, 32, 0.2), transparent 30%),
     linear-gradient(180deg, #10111b 0%, #050509 56%, #030305 100%);
 }
 
+/*
+  Hier liegt die eigentliche Lösung:
+  Die Auswahlseite scrollt innerhalb des Handy-Rahmens.
+  Kein vertikales Zentrieren, deshalb wird oben nichts mehr abgeschnitten.
+*/
 .selection-main {
-  flex: 1;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 52px 26px 104px;
   overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+
+  display: block;
+  padding:
+    max(56px, calc(46px + env(safe-area-inset-top)))
+    26px
+    24px;
 }
 
 .selection-header {
-  margin-bottom: 28px;
+  margin: 0 0 28px;
 }
 
 .status-pill {
@@ -171,35 +211,39 @@ button {
 
 .selection-header h1 {
   max-width: 390px;
-  font-size: clamp(42px, 8vh, 62px);
-  line-height: 0.96;
+  font-size: clamp(38px, 7vh, 62px);
+  line-height: 0.98;
   font-weight: 860;
 }
 
 .selection-header p {
-  max-width: 340px;
+  max-width: 360px;
   margin: 16px 0 0;
   color: rgba(255, 255, 255, 0.62);
   font-size: 16px;
   line-height: 1.5;
 }
 
+/* Alle 12 Karten dürfen unbegrenzt untereinander stehen */
 .contact-list {
   display: grid;
   gap: 14px;
+  padding-bottom: 18px;
 }
 
 .contact-card {
   width: 100%;
-  min-height: 160px;
+  min-height: 150px;
   border-radius: 28px;
   display: grid;
-  grid-template-columns: 118px 1fr 56px;
+  grid-template-columns: 108px minmax(0, 1fr) 56px;
   align-items: center;
-  gap: 16px;
-  padding: 18px;
+  gap: 15px;
+  padding: 16px;
   text-align: left;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
   transition:
     transform 160ms ease,
     border-color 160ms ease,
@@ -215,8 +259,8 @@ button {
 }
 
 .contact-avatar-wrap {
-  width: 108px;
-  height: 118px;
+  width: 102px;
+  height: 112px;
   display: grid;
   place-items: center;
 }
@@ -228,7 +272,7 @@ button {
 }
 
 .contact-name {
-  font-size: 28px;
+  font-size: 27px;
   font-weight: 820;
   line-height: 1;
 }
@@ -265,15 +309,14 @@ button {
   height: 25px;
 }
 
+/* =========================================================
+   ÜBER-PROJEKT-SEITE
+   ========================================================= */
+
 .about-panel {
   border-radius: 28px;
   padding: 26px;
-}
-
-@media (max-height: 760px) {
-  .selection-main {
-    justify-content: flex-start;
-  }
+  margin-bottom: 14px;
 }
 
 .about-panel h2 {
@@ -295,18 +338,22 @@ button {
   margin-top: 12px;
 }
 
+/* =========================================================
+   UNTERE NAVIGATION
+   Sie liegt nicht mehr über dem letzten Element.
+   ========================================================= */
+
 .tab-bar {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 18px;
+  position: relative;
+  z-index: 10;
   height: 76px;
-  z-index: 8;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  margin: 0 20px 18px;
   padding: 9px;
   border-radius: 28px;
+  flex-shrink: 0;
 }
 
 .tab-bar button {
@@ -330,10 +377,18 @@ button {
   font-weight: 740;
 }
 
+/* =========================================================
+   ANRUF-SEITE
+   ========================================================= */
+
 .calling-screen,
 .facetime-screen {
   background:
-    radial-gradient(circle at 50% 29%, color-mix(in srgb, var(--persona-bg) 88%, var(--tone)), transparent 37%),
+    radial-gradient(
+      circle at 50% 29%,
+      color-mix(in srgb, var(--persona-bg) 88%, var(--tone)),
+      transparent 37%
+    ),
     radial-gradient(circle at 50% 18%, var(--glow), transparent 32%),
     linear-gradient(180deg, #07070b, #010102);
 }
@@ -386,7 +441,8 @@ button {
   font-size: 17px;
 }
 
-.calling-dots {
+.calling-dots,
+.typing-dots {
   display: flex;
   gap: 10px;
 }
@@ -410,13 +466,20 @@ button {
   animation-delay: 0.32s;
 }
 
+/* =========================================================
+   LIVE-INTERVIEW / FRAGEN
+   ========================================================= */
+
 .facetime-screen {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto auto;
   gap: 12px;
-  padding: 40px 20px 18px;
-  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  padding:
+    max(40px, calc(28px + env(safe-area-inset-top)))
+    20px
+    max(18px, env(safe-area-inset-bottom));
   min-height: 0;
+  overflow: hidden;
 }
 
 .call-header {
@@ -535,25 +598,6 @@ button {
   text-align: center;
 }
 
-@media (max-height: 720px) {
-  .identity-card {
-    display: none;
-  }
-
-  .answer-panel {
-    max-height: 32dvh;
-  }
-}
-
-/* Die Self-View-PiP ist absolut positioniert und kollidiert mit Identity-Card
-   und Header, sobald die Avatar-Zone schrumpft. Darum nur auf großen Screens
-   (Ausstellungsdisplay, Tablet, Desktop-Mockup) zeigen, wo genug Platz ist. */
-@media (max-height: 900px) {
-  .self-view {
-    display: none;
-  }
-}
-
 .identity-card span {
   color: var(--tone);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -588,11 +632,6 @@ button {
 
 .answer-panel .muted {
   color: rgba(255, 255, 255, 0.42);
-}
-
-.typing-dots {
-  display: flex;
-  gap: 9px;
 }
 
 .question-dock {
@@ -643,7 +682,11 @@ button {
 .liquid-button.selected {
   border-color: color-mix(in srgb, var(--tone) 52%, white);
   background:
-    linear-gradient(150deg, color-mix(in srgb, var(--tone) 18%, transparent), rgba(255, 255, 255, 0.06)),
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--tone) 18%, transparent),
+      rgba(255, 255, 255, 0.06)
+    ),
     rgba(255, 255, 255, 0.07);
 }
 
@@ -692,12 +735,9 @@ button {
   box-shadow: 0 18px 34px rgba(255, 48, 39, 0.38);
 }
 
-.hangup-button:active,
-.voice-toggle:active,
-.liquid-button:active,
-.tab-bar button:active {
-  transform: scale(0.96);
-}
+/* =========================================================
+   ELEMENT-CHARAKTERE
+   ========================================================= */
 
 .avatar {
   --avatar-size: 256px;
@@ -711,7 +751,7 @@ button {
 }
 
 .avatar-card {
-  --avatar-size: 108px;
+  --avatar-size: 100px;
 }
 
 .avatar-calling {
@@ -740,7 +780,12 @@ button {
   border-radius: 50%;
   overflow: hidden;
   background:
-    radial-gradient(circle at 29% 22%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.22) 16%, transparent 28%),
+    radial-gradient(
+      circle at 29% 22%,
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 255, 255, 0.22) 16%,
+      transparent 28%
+    ),
     radial-gradient(circle at 32% 24%, var(--tone-light), var(--tone) 40%, var(--ink) 100%);
   box-shadow:
     inset -22px -28px 38px rgba(0, 0, 0, 0.34),
@@ -802,7 +847,6 @@ button {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: calc(var(--avatar-size) * 0.09);
   font-weight: 850;
-  letter-spacing: 0;
 }
 
 .avatar-torso {
@@ -881,11 +925,302 @@ button {
   animation: spark 2.8s ease-in-out 0.7s infinite;
 }
 
+/* =========================================================
+   RESPONSIVE: HANDY
+   ========================================================= */
+
+@media (max-width: 540px) {
+  .app-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .ambient {
+    display: none;
+  }
+
+  .device-frame {
+    width: 100%;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    padding: 0;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .phone-screen {
+    border-radius: 0;
+  }
+
+  .device-speaker {
+    top: max(12px, env(safe-area-inset-top));
+  }
+
+  .selection-main {
+    padding:
+      max(68px, calc(52px + env(safe-area-inset-top)))
+      17px
+      18px;
+  }
+
+  .selection-header {
+    margin-bottom: 22px;
+  }
+
+  .selection-header h1 {
+    font-size: clamp(38px, 11vw, 52px);
+    line-height: 0.99;
+  }
+
+  .selection-header p {
+    font-size: 15px;
+  }
+
+  .contact-list {
+    gap: 12px;
+  }
+
+  .contact-card {
+    min-height: 118px;
+    grid-template-columns: 80px minmax(0, 1fr) 46px;
+    gap: 10px;
+    padding: 13px;
+    border-radius: 24px;
+  }
+
+  .contact-avatar-wrap {
+    width: 76px;
+    height: 86px;
+  }
+
+  .avatar-card {
+    --avatar-size: 76px;
+  }
+
+  .contact-name {
+    font-size: 23px;
+  }
+
+  .contact-element {
+    font-size: 11px;
+  }
+
+  .contact-tagline {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .call-dot {
+    width: 45px;
+    height: 45px;
+  }
+
+  .call-dot svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .tab-bar {
+    height: 66px;
+    margin:
+      0
+      14px
+      max(12px, env(safe-area-inset-bottom));
+    border-radius: 24px;
+  }
+
+  .tab-bar button {
+    border-radius: 18px;
+  }
+
+  .facetime-screen {
+    padding:
+      max(52px, calc(38px + env(safe-area-inset-top)))
+      14px
+      max(14px, env(safe-area-inset-bottom));
+  }
+
+  .call-header h1 {
+    font-size: 27px;
+  }
+
+  .call-status {
+    height: 30px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .question-dock {
+    grid-template-columns: 1fr 60px;
+    gap: 8px;
+  }
+
+  .hangup-button {
+    width: 58px;
+    height: 58px;
+  }
+
+  .voice-toggle {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (max-width: 380px) {
+  .selection-main {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .selection-header h1 {
+    font-size: 36px;
+  }
+
+  .contact-card {
+    min-height: 106px;
+    grid-template-columns: 68px minmax(0, 1fr) 40px;
+    padding: 10px;
+  }
+
+  .contact-avatar-wrap {
+    width: 64px;
+    height: 74px;
+  }
+
+  .avatar-card {
+    --avatar-size: 64px;
+  }
+
+  .contact-name {
+    font-size: 20px;
+  }
+
+  .contact-tagline {
+    font-size: 11px;
+  }
+
+  .call-dot {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: KLEINE HÖHE
+   ========================================================= */
+
+@media (max-height: 720px) {
+  .identity-card {
+    display: none;
+  }
+
+  .answer-panel {
+    max-height: 32dvh;
+  }
+
+  .self-view {
+    display: none;
+  }
+
+  .selection-main {
+    padding-top: 48px;
+  }
+
+  .selection-header h1 {
+    font-size: 38px;
+  }
+
+  .contact-card {
+    min-height: 122px;
+  }
+
+  .avatar-hero {
+    --avatar-size: clamp(110px, 25vh, 230px);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: GROSSE DESKTOP-/AUSSTELLUNGS-BILDSCHIRME
+   ========================================================= */
+
+@media (min-height: 1200px) and (min-width: 760px) {
+  .device-frame {
+    width: min(82vw, 760px);
+    height: min(94vh, 1440px);
+  }
+
+  .selection-main {
+    padding:
+      74px
+      42px
+      28px;
+  }
+
+  .selection-header h1 {
+    font-size: 72px;
+  }
+
+  .selection-header p,
+  .about-panel p {
+    font-size: 20px;
+  }
+
+  .contact-card {
+    min-height: 190px;
+    grid-template-columns: 150px minmax(0, 1fr) 72px;
+    padding: 24px;
+  }
+
+  .contact-avatar-wrap {
+    width: 142px;
+    height: 150px;
+  }
+
+  .avatar-card {
+    --avatar-size: 142px;
+  }
+
+  .contact-name {
+    font-size: 37px;
+  }
+
+  .contact-tagline,
+  .identity-card strong,
+  .answer-panel p {
+    font-size: 18px;
+  }
+
+  .call-dot {
+    width: 68px;
+    height: 68px;
+  }
+
+  .tab-bar {
+    height: 90px;
+    margin: 0 30px 26px;
+  }
+
+  .tab-bar svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .tab-bar span {
+    font-size: 15px;
+  }
+}
+
+/* =========================================================
+   ANIMATIONEN
+   ========================================================= */
+
 @keyframes avatar-float {
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -896,6 +1231,7 @@ button {
   100% {
     height: 8%;
   }
+
   50% {
     height: 12%;
   }
@@ -906,6 +1242,7 @@ button {
     opacity: 0.82;
     transform: scale(0.78);
   }
+
   80%,
   100% {
     opacity: 0;
@@ -919,6 +1256,7 @@ button {
     opacity: 0.32;
     transform: translateY(0);
   }
+
   50% {
     opacity: 1;
     transform: translateY(-8px);
@@ -931,6 +1269,7 @@ button {
     opacity: 0.45;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.18);
@@ -943,296 +1282,9 @@ button {
     opacity: 0.35;
     transform: rotate(45deg) scale(0.8);
   }
+
   50% {
     opacity: 1;
     transform: rotate(45deg) scale(1.12);
-  }
-}
-
-@media (max-height: 820px) {
-  .selection-main {
-    padding-top: 44px;
-  }
-
-  .selection-header h1 {
-    font-size: 40px;
-  }
-
-  .contact-card {
-    min-height: 138px;
-  }
-
-  .avatar-hero {
-    --avatar-size: clamp(120px, 28vh, 275px);
-  }
-
-  .answer-panel {
-    min-height: clamp(88px, 12vh, 112px);
-  }
-
-  .liquid-button {
-    min-height: 58px;
-    font-size: 12px;
-  }
-}
-
-@media (min-height: 1200px) and (min-width: 760px) {
-  .device-frame {
-    width: min(82vw, 760px);
-    height: min(94vh, 1440px);
-  }
-
-  .selection-main {
-    padding-inline: 42px;
-  }
-
-  .selection-header h1 {
-    font-size: 72px;
-  }
-
-  .selection-header p,
-  .about-panel p {
-    font-size: 20px;
-  }
-
-  .contact-card {
-    min-height: 210px;
-    grid-template-columns: 158px 1fr 72px;
-    padding: 26px;
-  }
-
-  .contact-avatar-wrap {
-    width: 150px;
-    height: 158px;
-  }
-
-  .avatar-card {
-    --avatar-size: 150px;
-  }
-
-  .contact-name {
-    font-size: 38px;
-  }
-
-  .contact-tagline,
-  .identity-card strong,
-  .answer-panel p {
-    font-size: 19px;
-  }
-
-  .call-dot {
-    width: 70px;
-    height: 70px;
-  }
-
-  .tab-bar {
-    height: 94px;
-    left: 32px;
-    right: 32px;
-    bottom: 28px;
-  }
-
-  .tab-bar svg {
-    width: 31px;
-    height: 31px;
-  }
-
-  .tab-bar span {
-    font-size: 15px;
-  }
-
-  .facetime-screen {
-    padding: 58px 34px 28px;
-  }
-
-  .avatar-hero {
-    --avatar-size: min(44vh, 430px);
-  }
-
-  .answer-panel {
-    min-height: 180px;
-  }
-
-  .liquid-button {
-    min-height: 86px;
-    padding: 16px;
-    font-size: 17px;
-  }
-
-  .liquid-button span {
-    font-size: 12px;
-  }
-
-  .hangup-button {
-    width: 82px;
-    height: 82px;
-  }
-
-  .voice-toggle {
-    width: 62px;
-    height: 62px;
-  }
-
-  .self-view {
-    width: 142px;
-    height: 194px;
-    top: 104px;
-    right: 32px;
-  }
-}
-
-@media (min-height: 1800px) and (min-width: 1100px) {
-  .device-frame {
-    width: min(76vw, 940px);
-    height: min(94vh, 1780px);
-  }
-
-  .selection-main {
-    padding-inline: 58px;
-  }
-
-  .selection-header h1 {
-    font-size: 88px;
-  }
-
-  .contact-card {
-    min-height: 250px;
-    grid-template-columns: 190px 1fr 86px;
-  }
-
-  .avatar-card {
-    --avatar-size: 182px;
-  }
-
-  .contact-avatar-wrap {
-    width: 184px;
-    height: 194px;
-  }
-
-  .contact-name {
-    font-size: 46px;
-  }
-
-  .call-header h1 {
-    font-size: 48px;
-  }
-
-  .answer-panel p {
-    font-size: 22px;
-  }
-
-  .liquid-button {
-    min-height: 104px;
-    font-size: 20px;
-  }
-}
-
-/* Vollbild-Modus für Handys (schmal ODER niedrig/Querformat) */
-@media (max-width: 540px), (max-height: 540px) {
-  .app-shell {
-    padding: 0;
-  }
-
-  .device-frame {
-    width: 100vw;
-    width: 100dvw;
-    height: 100vh;
-    height: 100dvh;
-    padding: 0;
-    border-radius: 0;
-  }
-
-  .phone-screen {
-    border-radius: 0;
-  }
-
-  .device-speaker {
-    top: max(11px, env(safe-area-inset-top));
-  }
-
-  .selection-main {
-    padding-top: max(52px, calc(28px + env(safe-area-inset-top)));
-    padding-bottom: calc(104px + env(safe-area-inset-bottom));
-  }
-
-  .tab-bar {
-    bottom: max(18px, env(safe-area-inset-bottom));
-  }
-
-  .facetime-screen {
-    padding-top: max(40px, calc(24px + env(safe-area-inset-top)));
-  }
-
-  .self-view {
-    top: max(76px, calc(56px + env(safe-area-inset-top)));
-  }
-}
-
-@media (max-width: 430px) {
-  .contact-card {
-    grid-template-columns: 92px 1fr 48px;
-    min-height: 132px;
-    padding: 14px;
-  }
-
-  .contact-avatar-wrap {
-    width: 88px;
-  }
-
-  .avatar-card {
-    --avatar-size: 88px;
-  }
-}
-
-/* Querformat auf Handys: kompaktes Layout */
-@media (orientation: landscape) and (max-height: 540px) {
-  .facetime-screen {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    grid-template-rows: auto minmax(0, 1fr) auto;
-    column-gap: 16px;
-    padding-top: max(14px, env(safe-area-inset-top));
-  }
-
-  .call-header {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .avatar-stage {
-    grid-column: 1;
-    grid-row: 2 / span 2;
-    padding-top: 0;
-  }
-
-  .avatar-hero {
-    --avatar-size: clamp(96px, 34vh, 200px);
-  }
-
-  .identity-card {
-    display: none;
-  }
-
-  .answer-panel {
-    grid-column: 2;
-    grid-row: 2;
-    max-height: none;
-    min-height: 0;
-  }
-
-  .question-dock {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .question-grid {
-    max-height: 30dvh;
-  }
-
-  .self-view {
-    display: none;
-  }
-
-  .selection-main {
-    justify-content: flex-start;
   }
 }
