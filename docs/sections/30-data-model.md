@@ -3,7 +3,7 @@ id: data-model
 title: Datenmodell
 order: 30
 status: current
-last_updated: 2026-06-17
+last_updated: 2026-06-24
 owner: @naim
 linked_paths: src/data.js, src/dialog-overview.json
 summary: Form der In-App-Daten — Personas und der persona-spezifische Fragebaum.
@@ -23,6 +23,7 @@ erDiagram
   PERSONA {
     string id
     string name
+    string elementName
     string element
     string tagline
     string portrait
@@ -45,9 +46,12 @@ erDiagram
 ## Felder im Detail
 
 **`PERSONA`** (Array `PERSONAS`) — Stammdaten und Look eines Elements: `id`,
-`name`, `element` (z. B. „Au · 79"), `tagline`, `portrait` (Kürzel im Avatar)
-sowie Farbwerte (`color`, `colorLight`, `glow`, `ink`, `bg`), die als CSS-Custom-
-Properties in den Avatar und die Screen-Hintergründe fließen.
+`name` (personifiziert, z. B. „Goldina"), `elementName` (echter Elementname,
+z. B. „Gold" — im Call-Header sichtbar, damit klar wird, *welches* Element
+spricht), `element` (Symbol · Ordnungszahl, z. B. „Au · 79"), `tagline`,
+`portrait` (Kürzel im Avatar) sowie Farbwerte (`color`, `colorLight`, `glow`,
+`ink`, `bg`), die als CSS-Custom-Properties in den Avatar und die
+Screen-Hintergründe fließen.
 
 **`DIALOG_FLOW`** (Objekt `DIALOG_FLOWS`, key = persona-`id`):
 - `introStatement` — erster Text beim Start des Calls.

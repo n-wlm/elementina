@@ -2,6 +2,7 @@ export const PERSONAS = [
   {
     id: "goldina",
     name: "Goldina",
+    elementName: "Gold",
     element: "Au · 79",
     role: "Kontakt, SIM, Mikroprozessor",
     tagline: "Das wertvollste Metall der Welt",
@@ -16,6 +17,7 @@ export const PERSONAS = [
   {
     id: "kobaltin",
     name: "Kobaltin",
+    elementName: "Kobalt",
     element: "Co · 27",
     role: "Lithium-Ionen-Akku",
     tagline: "Die Kraft hinter jedem Akku",
@@ -30,6 +32,7 @@ export const PERSONAS = [
   {
     id: "lithia",
     name: "Lithia",
+    elementName: "Lithium",
     element: "Li · 3",
     role: "Lithium-Ionen-Akku",
     tagline: "Die Energie im Akku",
@@ -44,6 +47,7 @@ export const PERSONAS = [
   {
     id: "indira",
     name: "Indira",
+    elementName: "Indium",
     element: "In · 49",
     role: "Touchscreen, Display",
     tagline: "Die Berührung im Display",
@@ -58,6 +62,7 @@ export const PERSONAS = [
   {
     id: "gallia",
     name: "Gallia",
+    elementName: "Gallium",
     element: "Ga · 31",
     role: "Chips, LEDs, Optik",
     tagline: "Das Licht in der Elektronik",
@@ -72,6 +77,7 @@ export const PERSONAS = [
   {
     id: "silico",
     name: "Silico",
+    elementName: "Silizium",
     element: "Si · 14",
     role: "Chips, Sensoren, Prozessor",
     tagline: "Das Gehirn im Smartphone",
@@ -86,6 +92,7 @@ export const PERSONAS = [
   {
     id: "zinnia",
     name: "Zinnia",
+    elementName: "Zinn",
     element: "Sn · 50",
     role: "Lötstellen auf Platinen",
     tagline: "Die Verbindung im Inneren",
@@ -100,6 +107,7 @@ export const PERSONAS = [
   {
     id: "neodya",
     name: "Neodya",
+    elementName: "Neodym",
     element: "Nd · 60",
     role: "Lautsprecher, Mikrofon, Vibration",
     tagline: "Die starke Kraft im Kleinen",
@@ -114,6 +122,7 @@ export const PERSONAS = [
   {
     id: "dysra",
     name: "Dysra",
+    elementName: "Dysprosium",
     element: "Dy · 66",
     role: "Hitzefeste Magnete",
     tagline: "Die Ausdauer der Magnete",
@@ -128,6 +137,7 @@ export const PERSONAS = [
   {
     id: "alumina",
     name: "Alumina",
+    elementName: "Aluminium",
     element: "Al · 13",
     role: "Gehäuse, Rahmen, Verbindungen",
     tagline: "Das leichte Schutzschild",
@@ -142,6 +152,7 @@ export const PERSONAS = [
   {
     id: "nickelix",
     name: "Nickelix",
+    elementName: "Nickel",
     element: "Ni · 28",
     role: "Akku, Stecker, Kontakte",
     tagline: "Die Widerstandskraft im Akku",
@@ -156,6 +167,7 @@ export const PERSONAS = [
   {
     id: "kupfero",
     name: "Kupfero",
+    elementName: "Kupfer",
     element: "Cu · 29",
     role: "Kabel, Ladebuchse, Leiterbahnen",
     tagline: "Die Strombahn im Smartphone",

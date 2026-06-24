@@ -504,6 +504,16 @@ button {
   line-height: 1;
 }
 
+.call-element {
+  display: block;
+  margin-top: 6px;
+  color: var(--tone);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 680;
+  letter-spacing: 0.06em;
+}
+
 .call-status {
   height: 34px;
   display: inline-flex;

@@ -42,7 +42,9 @@ in `src/data.js` (pro Element). Die wichtigsten:
 - **SelectionScreen** — Header, Kontaktliste der Personas (`ElementAvatar` +
   Name/Element/Tagline + Anruf-Dot) und iOS-artige Tabbar (`Anruf` / `Über`).
 - **CallingScreen** — animierte Klingel-Ringe um den Avatar, „Wird angerufen…".
-- **FaceTimeScreen** — Header mit Timer/Status, `SelfView` (Kamera-PiP),
+- **FaceTimeScreen** — Header mit Timer, personifiziertem Namen (`name`) und
+  darunter dem **echten Elementnamen** (`elementName · element`, z. B.
+  „Gold · Au · 79") in der Element-Farbe, Status, `SelfView` (Kamera-PiP),
   Avatar-Stage mit Identity-Card, Antwort-Panel, Fragebaum-Dock mit
   `LiquidButton`-Kacheln, Voice-Toggle und Auflegen-Button.
 - **ElementAvatar** — prozeduraler „Element-Charakter" (Kopf, Augen, Mund,

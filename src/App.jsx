@@ -455,6 +455,7 @@ function FaceTimeScreen({ persona, onHangUp, onTap, onHangupSound }) {
         <div>
           <span className="call-time">{formattedTime}</span>
           <h1>{persona.name}</h1>
+          <span className="call-element">{persona.elementName} · {persona.element}</span>
         </div>
         <div className="call-status">
           <span />
