@@ -1135,8 +1135,77 @@ button {
     min-height: 122px;
   }
 
+  .avatar-stage {
+    padding-top: 0;
+  }
+
   .avatar-hero {
     --avatar-size: clamp(110px, 25vh, 230px);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: SEHR FLACH / HANDY IM QUERFORMAT
+   Avatar ist dekorativ und weicht; der Fragen-Dock erhält den
+   flexiblen Rest, damit der Auflegen-Button immer erreichbar
+   bleibt und nichts aus dem Rahmen läuft.
+   ========================================================= */
+
+@media (max-height: 560px) {
+  .facetime-screen {
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 8px;
+    padding:
+      max(14px, env(safe-area-inset-top))
+      16px
+      max(12px, env(safe-area-inset-bottom));
+  }
+
+  .avatar-stage {
+    display: none;
+  }
+
+  .answer-panel {
+    min-height: 56px;
+    max-height: 30dvh;
+    padding: 12px 16px;
+    border-radius: 22px;
+  }
+
+  .answer-panel p {
+    font-size: 14px;
+  }
+
+  .question-grid {
+    max-height: 100%;
+    align-content: start;
+  }
+
+  .call-header h1 {
+    font-size: 24px;
+  }
+
+  /* Auswahlseite: Header kompakt, damit im Querformat
+     direkt eine Element-Karte sichtbar ist statt nur Titel. */
+  .selection-main {
+    padding-top: 26px;
+  }
+
+  .selection-header {
+    margin-bottom: 14px;
+  }
+
+  .selection-header h1 {
+    font-size: 30px;
+  }
+
+  .selection-header p {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+
+  .status-pill {
+    margin-bottom: 10px;
   }
 }
 

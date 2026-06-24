@@ -3,7 +3,7 @@ id: ui-design
 title: UI-Design
 order: 60
 status: current
-last_updated: 2026-06-17
+last_updated: 2026-06-24
 owner: @naim
 linked_paths: src/styles.css, src/App.jsx, src/data.js
 summary: Designsprache (Liquid Glass), Tokens, Screens und das responsive Verhalten.
@@ -51,22 +51,39 @@ in `src/data.js` (pro Element). Die wichtigsten:
 
 ## Responsives Verhalten
 
-- **Vollbild auf Handys:** bei `max-width: 540px` *oder* `max-height: 540px`
-  verschwindet der Phone-Rahmen, die App füllt den Screen; Safe-Areas via
-  `env(safe-area-inset-*)`.
-- **Desktop/Tablet:** zentriertes Phone-Mockup (`min(92vw, 520px)`).
+Ein fluides Grundlayout, ergänzt um wenige Breakpoints, die bei knappem Platz
+gestaffelt Dekoratives ausblenden — damit Inhalt und Bedienelemente nie
+überlappen oder unerreichbar werden.
+
+- **Vollbild auf Handys:** bei `max-width: 540px` verschwindet der Phone-Rahmen,
+  die App füllt den Screen (`100dvw`/`100dvh`); Safe-Areas via
+  `env(safe-area-inset-*)`. Engere Abstände/Schriftgrößen zusätzlich bei
+  `max-width: 380px`.
+- **Desktop/Tablet:** zentriertes Phone-Mockup (`min(92vw, 520px)` breit,
+  `min(94dvh, 980px)` hoch). Beide Auswahl- und FaceTime-Screen scrollen
+  *innerhalb* des Rahmens, sodass alle 12 Personas bzw. lange Antworten + Fragen
+  erreichbar bleiben.
+- **Große Ausstellungs-/Vertikaldisplays** (`min-height: 1200px` und
+  `min-width: 760px`): größerer Rahmen (`min(82vw, 760px)` × `min(94vh, 1440px)`)
+  und hochskalierte Typo/Karten.
 - **FaceTime-Schrumpflogik:** eigene Grid-Zeilen für Avatar-Stage
   (`minmax(0,1fr)`, schrumpft zuerst), Identity-Card, Antwort-Panel und Dock.
   Die Identity-Card liegt in **eigener Zeile** (nicht in der Avatar-Stage), damit
   sie beim Schrumpfen nie geclippt wird oder überlappt. Antwort-Panel
-  (`max-height: 40dvh`, auf niedrigen Screens 32dvh) und Fragebaum-Dock scrollen
+  (`max-height: 40dvh`, auf niedrigen Screens 32/30dvh) und Fragebaum-Dock scrollen
   *eingegrenzt* als Sicherheitsnetz.
 - **Gestaffeltes Ausblenden bei wenig Platz** (verhindert Überlappungen):
-  Identity-Card unter `max-height: 720px`, die absolut positionierte
-  Self-View-PiP unter `max-height: 900px`. Die PiP würde sonst beim Schrumpfen
-  der Avatar-Zone mit Identity-Card/Header kollidieren; sie erscheint nur auf
-  großen Screens (Ausstellungsdisplay, Tablet, Desktop-Mockup).
-- **Querformat** (`orientation: landscape` und `max-height: 540px`): eigenes
-  Zwei-Spalten-Layout (Avatar links, Antwort + Fragen rechts), PiP ausgeblendet.
-- **Verifikation:** Überlappungs-/Clipping-frei geprüft per DOM-Bounding-Box-Check
-  über 320×568 bis 1920×1080 inkl. Querformat, jeweils mit allen 6 Fragen.
+  Identity-Card und Self-View-PiP unter `max-height: 720px` (die absolut
+  positionierte PiP würde sonst beim Schrumpfen der Avatar-Zone mit Header
+  kollidieren).
+- **Sehr flach / Handy-Querformat** (`max-height: 560px`): Der dekorative Avatar
+  wird ausgeblendet und die FaceTime-Zeilen auf `auto auto minmax(0,1fr)`
+  reduziert — der Fragen-Dock erhält den flexiblen Rest, sodass der
+  **Auflegen-Button immer erreichbar** bleibt und das Fragen-Grid darin scrollt
+  statt über das Antwort-Panel zu wachsen. Der Auswahl-Header wird kompakt
+  gesetzt, damit auch im Querformat sofort eine Element-Karte sichtbar ist.
+- **Verifikation:** Überlappungs-/Clipping-frei per Browser-Preview und
+  DOM-Bounding-Box-Check geprüft über 320×568, 375×667, 740×360 (Querformat),
+  1024×600, 1280×720, 1366×768 und 1080×1920 — jeweils mit Antwort und allen
+  sichtbaren Fragen. Scroll-Ränder (z. B. Auswahlliste ↔ Tabbar) grenzen exakt
+  aneinander, ohne echte Überlappung.
