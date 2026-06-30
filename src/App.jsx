@@ -455,7 +455,6 @@ function FaceTimeScreen({ persona, onHangUp, onTap, onHangupSound }) {
         <div>
           <span className="call-time">{formattedTime}</span>
           <h1>{persona.name}</h1>
-          <span className="call-element">{persona.elementName} · {persona.element}</span>
         </div>
         <div className="call-status">
           <span />
@@ -470,7 +469,7 @@ function FaceTimeScreen({ persona, onHangUp, onTap, onHangupSound }) {
       </section>
 
       <div className="identity-card glass">
-        <span>{persona.element}</span>
+        <span>{persona.elementName} · {persona.element}</span>
         <strong>{persona.tagline}</strong>
       </div>
 

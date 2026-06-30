@@ -16,10 +16,13 @@ ehrlich hält.
 ## 2026-06-24
 
 - **Echter Elementname im Anruf:** Neues Persona-Feld `elementName` (Gold,
-  Kobalt, Lithium … für alle 12 Personas). Der FaceTime-Header zeigt unter dem
-  personifizierten Namen jetzt `elementName · element` (z. B. „Gold · Au · 79"),
-  damit Besucher:innen sofort sehen, *welches* echte Element spricht. **Datenmodell**
-  (Feldliste) und **UI-Design** (FaceTimeScreen-Header) entsprechend aktualisiert.
+  Kobalt, Lithium … für alle 12 Personas). Er erscheint in der Identity-Card
+  unter dem Avatar als `elementName · element` (z. B. „Gold · Au · 79") über der
+  Tagline, damit Besucher:innen sehen, *welches* echte Element spricht. Der
+  Call-Header oben links bleibt bewusst nur der personifizierte Name (keine
+  Doppelung). Zusätzlich mehr Abstand zwischen Verbindungs-Status und der
+  Kamera-PiP. **Datenmodell** (Feldliste) und **UI-Design** (FaceTimeScreen)
+  entsprechend aktualisiert.
 - **Responsiveness fürs Handy-Querformat / sehr flache Screens gefixt:** Im
   FaceTime-Screen lief bei `max-height ≤ 560px` (z. B. 740×360) der Inhalt aus
   dem Rahmen — Antwort abgeschnitten, untere Fragen und **Auflegen-Button

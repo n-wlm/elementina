@@ -47,8 +47,9 @@ erDiagram
 
 **`PERSONA`** (Array `PERSONAS`) — Stammdaten und Look eines Elements: `id`,
 `name` (personifiziert, z. B. „Goldina"), `elementName` (echter Elementname,
-z. B. „Gold" — im Call-Header sichtbar, damit klar wird, *welches* Element
-spricht), `element` (Symbol · Ordnungszahl, z. B. „Au · 79"), `tagline`,
+z. B. „Gold" — in der Identity-Card unter dem Avatar über der Tagline sichtbar,
+damit klar wird, *welches* Element spricht), `element` (Symbol · Ordnungszahl,
+z. B. „Au · 79"), `tagline`,
 `portrait` (Kürzel im Avatar) sowie Farbwerte (`color`, `colorLight`, `glow`,
 `ink`, `bg`), die als CSS-Custom-Properties in den Avatar und die
 Screen-Hintergründe fließen.
